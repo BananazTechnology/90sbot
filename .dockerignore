@@ -1,0 +1,7 @@
+# Nasty node
+**/node_modules
+**/package-lock.json
+
+# GitHub
+**/.git
+**/.github
