@@ -36,6 +36,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reactionbot:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/90s-reactionbot:latest
           labels: |
             tech.bananaz.maintainer="docker@bananaz.tech"

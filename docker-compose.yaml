@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  reactionbot:
-    image: bananaztech/reactionbot:latest
-    container_name: reactionbot-df-prod
+  90s-reactionbot:
+    image: bananaztech/90s-reactionbot:latest
+    container_name: 90s-reactionbot-prod
     restart: always
     environment:
       DB_PORT: 3306
