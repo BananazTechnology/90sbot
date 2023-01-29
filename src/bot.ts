@@ -32,17 +32,20 @@ async function registerSubmission (message: Message) {
   }
   const text = message.content.toLowerCase().replace(/\s\s+/g, ' ').split(' ')
   const command = text[0]
+  let hasAttachment = false
   if (command === '!submit') {
     if (message.attachments) {
       console.log('attachments:')
       message.attachments.forEach((attachment) => {
-        submitAttachment(message, attachment)
-        console.log(attachment.url)
+        if (attachment.url !== '') {
+          hasAttachment = true
+          submitAttachment(message, attachment)
+          console.log(attachment.url)
+        }
       })
-    } else {
-      message.delete()
     }
-  } else {
+  }
+  if (!hasAttachment) {
     message.delete()
   }
 }
