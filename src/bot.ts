@@ -457,7 +457,7 @@ async function displayLeaderboard (channel: TextChannel, category: string) : Pro
       const rows = <RowDataPacket[]> result
       let msg = ''
       for (let i = 0; i < rows.length; i++) {
-        msg += `\`${i + 1}. \` ${`<@${rows[i].UserId}>`} • **${rows[i].Count}** Votes \n`
+        msg += `\`${i + 1}. \` ${`<@${rows[i].selectionId}>`} • **${rows[i].Count}** Votes \n`
       }
       if (msg) {
         const output = new MessageEmbed()
