@@ -5,7 +5,7 @@ import { Commands } from '../commandList'
 import { ButtonInteractions } from '../buttonList'
 
 export default (client: Client): void => {
-  client.on('interactionCreate', async (interaction: Interaction) => {
+  client.on('', async (interaction: Interaction) => {
     if (interaction.isCommand() || interaction.isContextMenu()) {
       await handleSlashCommand(client, interaction)
     } else if (interaction.isSelectMenu()) {
