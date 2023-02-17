@@ -452,7 +452,7 @@ async function displayLeaderboard (channel: TextChannel, category: string) : Pro
   return new Promise(async (resolve, reject) => {
     try {
       console.log('Grabbing Leaderboard', category)
-      const queryString = `SELECT selectionId, category, Count(selectionId) as 'Count' FROM votesubmissions WHERE category= '${category}' GROUP BY selectionId, category;`
+      const queryString = `SELECT selectionId, category, Count(selectionId) as 'Count' FROM votesubmissions WHERE category= '${category}' GROUP BY selectionId, category ORDER BY Count DESC;`
       const result = await dbQuery(queryString)
       const rows = <RowDataPacket[]> result
       let msg = ''
