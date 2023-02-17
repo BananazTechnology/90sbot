@@ -291,7 +291,7 @@ async function displayAllCategory (channel: TextBasedChannel, category: string):
 async function vote (message : Message) {
   const text = message.content.toLowerCase().replace(/\s\s+/g, ' ').split(' ')
   console.log(Number(message.author.createdTimestamp))
-  if (Number(message.author.createdTimestamp) > 1672549201000) {
+  if (Number(message.author.createdTimestamp) > 1675227600000) {
     message.react('👎')
     message.channel.send(`<@${message.author.id}> This discord account was created too recently. Unfortunately it can not participate in an effort to preserve the integrity of the voting. Please reach out to Wock if you're not looking to cheat the system and this is an unfortunate biproduct of good intentions`)
     console.log('account was created too recently')
