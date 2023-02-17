@@ -334,7 +334,7 @@ async function vote (message : Message) {
       message.react('👎')
       message.channel.send(`<@${message.author.id}> hmmm, something doesn't seem right. Try again please!`)
     }
-  } else if (commandPrefix === '!help') {
+  } else if (commandPrefix === '!info') {
     message.channel.send(` 
 Welcome to the 90s Kids Skate Contest!
 

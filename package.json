@@ -1,7 +1,7 @@
 {
-  "name": "fishing-game",
+  "name": "nineties-bot",
   "version": "1.0.0",
-  "description": "Deadfellaz Reaction Bot",
+  "description": "90s kids discord bot for skate competitions and more",
   "main": "src/bot.ts",
   "scripts": {
     "start": "ts-node src/bot.ts",
