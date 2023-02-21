@@ -511,4 +511,4 @@ async function clearChat (channel: TextChannel, numb: number) {
   channel.bulkDelete(messages, true)
 }
 
-setInterval(displayLeaderboards, 120000)
+// setInterval(displayLeaderboards, 120000)
