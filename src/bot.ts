@@ -123,7 +123,7 @@ async function logSubmissionToDataBase (message: Message, discordId: string, att
           WHERE discordID = ${discordId}`
         await dbQuery(queryString)
         message.channel.send(`<@${message.author.id}> has updated their submission! Thx!`)
-        message.channel.send('Type !submit and attach your submission to enter the competition or update your submission!')
+        // message.channel.send('Type !submit and attach your submission to enter the competition or update your submission!')
       } else {
         console.log(
           `INSERTING TO DATABASE: 
@@ -138,7 +138,7 @@ async function logSubmissionToDataBase (message: Message, discordId: string, att
           VALUES(${discordId}, '${message.author.username}', '${attachment.url}', 0, '');`
         await dbQuery(queryString)
         message.channel.send(`<@${message.author.id}> has submitted their entry!`)
-        message.channel.send('Type !submit and attach your submission to enter the competition or update your submission!')
+        // message.channel.send('Type !submit and attach your submission to enter the competition or update your submission!')
       }
       resolve(true)
     } catch (error) {
