@@ -56,11 +56,11 @@ client.on('interactionCreate', async interaction => {
 })
 
 async function registerSubmission (message: Message) {
-  console.log(message)
   let hasAttachment = false
   if (message.attachments) {
     console.log('attachments:')
     message.attachments.forEach((attachment) => {
+      console.log(attachment)
       if (attachment.url !== '') {
         hasAttachment = true
         submitAttachment(message, attachment)
