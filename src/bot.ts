@@ -135,7 +135,7 @@ async function logSubmissionToDataBase (message: Message, discordId: string, att
         const queryString = `
           INSERT INTO submissions 
           (discordID, discordName, submissionString, holder, category) 
-          VALUES(${discordId}, '${message.author.username}', '${attachment.url}', 0, '');`
+          VALUES(${discordId}, '${message.author.username}', '${attachment.url}', 0, 'pro');`
         await dbQuery(queryString)
         message.channel.send(`<@${message.author.id}> has submitted their entry!`)
         // message.channel.send('Type !submit and attach your submission to enter the competition or update your submission!')
@@ -239,6 +239,7 @@ async function updateSubmission (discordId: string, category: string) {
 async function determineList (message: Message): Promise<void> {
   // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
+    console.log('determining list')
     try {
       if (message.author.id === process.env.AUTHOR_ID) {
         return
@@ -336,14 +337,11 @@ async function vote (message : Message) {
 Welcome to the 90s Kids Skate Contest!
 
 To vote for someone, please enter:
-[categorycommand][space][@username]
+!votepro @discordusername
 eg. !votepro @Wock 
 
 To recast your vote, simply enter the same command
 with a new username.
-
-!votepro @username
-!voteamateur @username
 `)
     message.react('👍')
     console.log(`${message.author.username} just ran the help command`)
@@ -480,7 +478,7 @@ async function displayLeaderboards () {
     const leaderboardChannel = client.channels.cache.get(channel) as TextChannel
     await clearChat(leaderboardChannel, 100)
     displayLeaderboard(leaderboardChannel, 'pro')
-    displayLeaderboard(leaderboardChannel, 'amateur')
+    // displayLeaderboard(leaderboardChannel, 'amateur')
   }
 }
 
@@ -508,4 +506,4 @@ async function clearChat (channel: TextChannel, numb: number) {
   channel.bulkDelete(messages, true)
 }
 
-// setInterval(displayLeaderboards, 120000)
+setInterval(displayLeaderboards, 120000)
