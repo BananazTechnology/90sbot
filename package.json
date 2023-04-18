@@ -1,6 +1,6 @@
 {
   "name": "nineties-bot",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "90s kids discord bot for skate competitions and more",
   "main": "src/bot.ts",
   "scripts": {
