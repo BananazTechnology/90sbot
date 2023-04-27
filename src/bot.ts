@@ -1,4 +1,4 @@
-import { Client, Message, MessageAttachment, MessageButton, MessageEmbed, TextBasedChannel, TextChannel } from 'discord.js'
+import { Client, Message, MessageAttachment, MessageButton, TextBasedChannel } from 'discord.js'
 import * as dotenv from 'dotenv'
 import path from 'path'
 import interactionCreate from './hooks/interactionCreate'
@@ -442,45 +442,45 @@ function toDisplay (input: string[], done: boolean) {
   return s
 }
 
-async function displayLeaderboard (channel: TextChannel, category: string) : Promise<void> {
-  // eslint-disable-next-line no-async-promise-executor
-  return new Promise(async (resolve, reject) => {
-    try {
-      console.log('Grabbing Leaderboard', category)
-      const queryString = `SELECT selectionId, category, Count(selectionId) as 'Count' FROM votesubmissions WHERE category= '${category}' GROUP BY selectionId, category ORDER BY Count DESC;`
-      const result = await dbQuery(queryString)
-      const rows = <RowDataPacket[]> result
-      let msg = ''
-      for (let i = 0; i < rows.length; i++) {
-        const user = await channel.guild.members.fetch(rows[i].selectionId)
-        msg += `\`${i + 1}. \` ${user?.displayName} • **${rows[i].Count}** Votes \n`
-      }
-      if (msg) {
-        const output = new MessageEmbed()
-          .setColor('#FFC800')
-          .setTitle(`**${category === 'pro' ? 'Pro' : 'Amateur'} Leaderboard**`)
-          .setDescription(msg)
-          .setTimestamp()
-        channel.send({
-          embeds: [output]
-        })
-      }
-      resolve()
-    } catch (error) {
-      console.log(error)
-    }
-  })
-}
+// async function displayLeaderboard (channel: TextChannel, category: string) : Promise<void> {
+//   // eslint-disable-next-line no-async-promise-executor
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       console.log('Grabbing Leaderboard', category)
+//       const queryString = `SELECT selectionId, category, Count(selectionId) as 'Count' FROM votesubmissions WHERE category= '${category}' GROUP BY selectionId, category ORDER BY Count DESC;`
+//       const result = await dbQuery(queryString)
+//       const rows = <RowDataPacket[]> result
+//       let msg = ''
+//       for (let i = 0; i < rows.length; i++) {
+//         const user = await channel.guild.members.fetch(rows[i].selectionId)
+//         msg += `\`${i + 1}. \` ${user?.displayName} • **${rows[i].Count}** Votes \n`
+//       }
+//       if (msg) {
+//         const output = new MessageEmbed()
+//           .setColor('#FFC800')
+//           .setTitle(`**${category === 'pro' ? 'Pro' : 'Amateur'} Leaderboard**`)
+//           .setDescription(msg)
+//           .setTimestamp()
+//         channel.send({
+//           embeds: [output]
+//         })
+//       }
+//       resolve()
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   })
+// }
 
-async function displayLeaderboards () {
-  const channel = process.env.LEADERBOARD?.toString()
-  if (channel) {
-    const leaderboardChannel = client.channels.cache.get(channel) as TextChannel
-    await clearChat(leaderboardChannel, 100)
-    displayLeaderboard(leaderboardChannel, 'pro')
-    // displayLeaderboard(leaderboardChannel, 'amateur')
-  }
-}
+// async function displayLeaderboards () {
+//   const channel = process.env.LEADERBOARD?.toString()
+//   if (channel) {
+//     const leaderboardChannel = client.channels.cache.get(channel) as TextChannel
+//     await clearChat(leaderboardChannel, 100)
+//     displayLeaderboard(leaderboardChannel, 'pro')
+//     // displayLeaderboard(leaderboardChannel, 'amateur')
+//   }
+// }
 
 // async function deleteAllMessages(channel: TextBasedChannel) : Promise<void> {
 //   // eslint-disable-next-line no-async-promise-executor
@@ -500,10 +500,10 @@ async function displayLeaderboards () {
 //   })
 // }
 
-async function clearChat (channel: TextChannel, numb: number) {
-  const messageManager = channel.messages
-  const messages = await messageManager.channel.messages.fetch({ limit: numb })
-  channel.bulkDelete(messages, true)
-}
+// async function clearChat (channel: TextChannel, numb: number) {
+//   const messageManager = channel.messages
+//   const messages = await messageManager.channel.messages.fetch({ limit: numb })
+//   channel.bulkDelete(messages, true)
+// }
 
-setInterval(displayLeaderboards, 120000)
+// setInterval(displayLeaderboards, 120000)
